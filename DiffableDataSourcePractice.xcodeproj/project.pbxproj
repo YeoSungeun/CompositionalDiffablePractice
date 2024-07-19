@@ -16,6 +16,7 @@
 		A096BDF82C4A190000F6026D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A096BDF72C4A190000F6026D /* SettingViewController.swift */; };
 		A096BDFA2C4A191300F6026D /* TravelTalViewContorller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A096BDF92C4A191300F6026D /* TravelTalViewContorller.swift */; };
 		A096BDFD2C4A1D9400F6026D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A096BDFC2C4A1D9400F6026D /* SnapKit */; };
+		A096BDFF2C4A2E3600F6026D /* ChattingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A096BDFE2C4A2E3600F6026D /* ChattingData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		A096BDF52C4A110500F6026D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A096BDF72C4A190000F6026D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A096BDF92C4A191300F6026D /* TravelTalViewContorller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelTalViewContorller.swift; sourceTree = "<group>"; };
+		A096BDFE2C4A2E3600F6026D /* ChattingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChattingData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,14 +64,12 @@
 		A096BDDD2C491EFD00F6026D /* DiffableDataSourcePractice */ = {
 			isa = PBXGroup;
 			children = (
+				A096BE002C4A2E7100F6026D /* Resource */,
 				A096BDF42C4A0F8800F6026D /* TabBar */,
 				A096BDF32C4A0F6600F6026D /* Setting */,
 				A096BDF22C4A0F6300F6026D /* TravelTalk */,
 				A096BDDE2C491EFD00F6026D /* AppDelegate.swift */,
 				A096BDE02C491EFD00F6026D /* SceneDelegate.swift */,
-				A096BDE42C491EFD00F6026D /* Main.storyboard */,
-				A096BDE72C491EFE00F6026D /* Assets.xcassets */,
-				A096BDE92C491EFE00F6026D /* LaunchScreen.storyboard */,
 				A096BDEC2C491EFE00F6026D /* Info.plist */,
 			);
 			path = DiffableDataSourcePractice;
@@ -97,6 +97,17 @@
 				A096BDF52C4A110500F6026D /* MainTabBarController.swift */,
 			);
 			name = TabBar;
+			sourceTree = "<group>";
+		};
+		A096BE002C4A2E7100F6026D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				A096BDFE2C4A2E3600F6026D /* ChattingData.swift */,
+				A096BDE72C491EFE00F6026D /* Assets.xcassets */,
+				A096BDE42C491EFD00F6026D /* Main.storyboard */,
+				A096BDE92C491EFE00F6026D /* LaunchScreen.storyboard */,
+			);
+			name = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A096BDDF2C491EFD00F6026D /* AppDelegate.swift in Sources */,
+				A096BDFF2C4A2E3600F6026D /* ChattingData.swift in Sources */,
 				A096BDE12C491EFD00F6026D /* SceneDelegate.swift in Sources */,
 				A096BDFA2C4A191300F6026D /* TravelTalViewContorller.swift in Sources */,
 				A096BDF62C4A110500F6026D /* MainTabBarController.swift in Sources */,
