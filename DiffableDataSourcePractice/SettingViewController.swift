@@ -39,14 +39,14 @@ class SettingViewController: UIViewController {
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
-    var registration: UICollectionView.CellRegistration<UICollectionViewListCell, String>!
-    
-    let list = SettingOption.allCases
+    var dataSource: UICollectionViewDiffableDataSource<SettingOption, String>!
+//    let list = SettingOption.allCases
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configurateView()
         configureDataSource()
+        updateSnapShot()
     }
     func collectionViewLayout() -> UICollectionViewLayout {
         var configuration = UICollectionLayoutListConfiguration(appearance: .grouped)
@@ -61,34 +61,48 @@ class SettingViewController: UIViewController {
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
         navigationItem.title = "설정"
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
     }
     func configureDataSource() {
+        var registration: UICollectionView.CellRegistration<UICollectionViewListCell, String>!
         registration = UICollectionView.CellRegistration { cell, indexPath, itemIdentifier in
             var content = UIListContentConfiguration.valueCell()
             content.text = itemIdentifier
             cell.contentConfiguration = content
             
-            
         }
+        // cellForRowAt 기능
+        dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+            let cell = collectionView.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: itemIdentifier)
+            return cell
+        })
+        
     }
-}
+    func updateSnapShot() {
+        var snapshot = NSDiffableDataSourceSnapshot<SettingOption, String>()
 
-extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return list.count
+        snapshot.appendSections(SettingOption.allCases)
+        for setting in SettingOption.allCases {
+            snapshot.appendItems(setting.subOptions, toSection: setting)
+        }
+        dataSource.apply(snapshot)
+    
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return list[section].subOptions.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: list[indexPath.section].subOptions[indexPath.item])
-        return cell
-    }
-    
-    
 }
+/*
+ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+ func numberOfSections(in collectionView: UICollectionView) -> Int {
+ return list.count
+ }
+ 
+ func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+ return list[section].subOptions.count
+ }
+ 
+ func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+ let cell = collectionView.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: list[indexPath.section].subOptions[indexPath.item])
+ return cell
+ }
+ 
+ 
+ }
+ */
