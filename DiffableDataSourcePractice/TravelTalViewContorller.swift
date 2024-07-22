@@ -15,6 +15,9 @@ final class TravelTalViewContorller: UIViewController {
     }()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     var datasource: UICollectionViewDiffableDataSource<Int, ChatRoom>!
+    var snapshot = NSDiffableDataSourceSnapshot<Int, ChatRoom>()
+    
+    var list: [ChatRoom] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +57,12 @@ final class TravelTalViewContorller: UIViewController {
             content.imageProperties.cornerRadius = 25
             content.text = itemIdentifier.chatroomName
             content.textProperties.font = .boldSystemFont(ofSize: 13)
-            content.secondaryText = "secondary"
+            content.secondaryText = itemIdentifier.chatList[0].message
+            content.secondaryTextProperties.font = .systemFont(ofSize: 12)
+            content.secondaryTextProperties.numberOfLines = 1
+            // MARK: 야매로 처리 함 해결하기..
+            content.textToSecondaryTextHorizontalPadding = 500
+            content.textToSecondaryTextVerticalPadding = 16
             cell.contentConfiguration = content
         })
         
@@ -65,10 +73,13 @@ final class TravelTalViewContorller: UIViewController {
         })
     }
     func updateSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, ChatRoom>()
         snapshot.appendSections([0])
         snapshot.appendItems(mockChatList, toSection: 0)
          
         datasource.apply(snapshot)
     }
 }
+
+extension TravelTalViewContorller: UISearchBarDelegate {
+}
+
